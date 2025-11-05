@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Filter Studio - Professional Image Editing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <i class="fas fa-camera-retro"></i>
+                    <span>Filter Studio</span>
+                </div>
+            </nav>
+        </header>
+        
+        <section class="hero-section" id="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Transform Your Photos Instantly</h1>
+                <p class="hero-subtitle">Professional-grade filters and effects. No signup required. 100% free.</p>
+                <div class="hero-actions">
+                    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                    <button id="hero-upload-btn" class="btn btn-primary btn-large">
+                        <i class="fas fa-upload"></i> Choose Photo
+                    </button>
+                    <button id="hero-webcam-btn" class="btn btn-secondary btn-large">
+                        <i class="fas fa-camera"></i> Use Camera
+                    </button>
+                </div>
+                <div class="hero-features">
+                    <div class="feature-badge">
+                        <i class="fas fa-bolt"></i>
+                        <span>Instant Processing</span>
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>100% Private</span>
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-magic"></i>
+                        <span>7 Pro Filters</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="main-content" id="editor" style="display: none;">
+            <div class="sidebar">
+                <div class="editor-header">
+                    <button id="back-to-hero" class="btn-back">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </div>
+                
+                <div class="upload-section">
+                    <button id="upload-btn" class="btn"><i class="fas fa-upload"></i> Change Photo</button>
+                    <button id="webcam-btn" class="btn"><i class="fas fa-camera"></i> Use Webcam</button>
+                </div>
+                
+                <div class="filters-section">
+                    <h3>Filters</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-btn" data-filter="none">None</button>
+                        <button class="filter-btn" data-filter="blur">Blur</button>
+                        <button class="filter-btn" data-filter="sharpen">Sharpen</button>
+                        <button class="filter-btn" data-filter="grayscale">Grayscale</button>
+                        <button class="filter-btn" data-filter="invert">Invert</button>
+                        <button class="filter-btn" data-filter="sepia">Sepia</button>
+                        <button class="filter-btn" data-filter="edge">Edge Detect</button>
+                    </div>
+                    
+                    <div class="filter-controls">
+                        <div class="slider-container">
+                            <label for="intensity">Intensity: <span id="intensity-value">5</span></label>
+                            <input type="range" id="intensity" min="0" max="20" value="5" class="slider">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="actions-section">
+                    <button id="download-btn" class="btn btn-download" disabled>
+                        <i class="fas fa-download"></i> Download Image
+                    </button>
+                </div>
+            </div>
+            
+            <div class="image-viewer">
+                <div class="image-container">
+                    <div class="image-wrapper">
+                        <canvas id="original-canvas"></canvas>
+                        <div class="image-label">Original</div>
+                    </div>
+                    <div class="image-wrapper">
+                        <canvas id="filtered-canvas"></canvas>
+                        <div class="image-label">Filtered</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <span id="status">Ready to upload an image</span>
+        </div>
+    </div>
+    
+    <!-- Webcam Modal -->
+    <div id="webcam-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Webcam</h3>
+            <video id="webcam" width="640" height="480" autoplay></video>
+            <div class="modal-buttons">
+                <button id="capture-btn" class="btn">Capture</button>
+                <button id="cancel-webcam" class="btn btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
