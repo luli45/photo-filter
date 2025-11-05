@@ -3,21 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Filter App</title>
+    <title>Photo Filter Studio - Professional Image Editing</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
         <header class="app-header">
-            <h1><i class="fas fa-camera-retro"></i> Photo Filter App</h1>
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <i class="fas fa-camera-retro"></i>
+                    <span>Filter Studio</span>
+                </div>
+            </nav>
         </header>
         
-        <div class="main-content">
-            <div class="sidebar">
-                <div class="upload-section">
+        <section class="hero-section" id="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Transform Your Photos Instantly</h1>
+                <p class="hero-subtitle">Professional-grade filters and effects. No signup required. 100% free.</p>
+                <div class="hero-actions">
                     <input type="file" id="image-upload" accept="image/*" style="display: none;">
-                    <button id="upload-btn" class="btn"><i class="fas fa-upload"></i> Upload Image</button>
+                    <button id="hero-upload-btn" class="btn btn-primary btn-large">
+                        <i class="fas fa-upload"></i> Choose Photo
+                    </button>
+                    <button id="hero-webcam-btn" class="btn btn-secondary btn-large">
+                        <i class="fas fa-camera"></i> Use Camera
+                    </button>
+                </div>
+                <div class="hero-features">
+                    <div class="feature-badge">
+                        <i class="fas fa-bolt"></i>
+                        <span>Instant Processing</span>
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>100% Private</span>
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-magic"></i>
+                        <span>7 Pro Filters</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="main-content" id="editor" style="display: none;">
+            <div class="sidebar">
+                <div class="editor-header">
+                    <button id="back-to-hero" class="btn-back">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </div>
+                
+                <div class="upload-section">
+                    <button id="upload-btn" class="btn"><i class="fas fa-upload"></i> Change Photo</button>
                     <button id="webcam-btn" class="btn"><i class="fas fa-camera"></i> Use Webcam</button>
                 </div>
                 

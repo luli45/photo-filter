@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
+    const heroUploadBtn = document.getElementById('hero-upload-btn');
+    const heroWebcamBtn = document.getElementById('hero-webcam-btn');
     const uploadBtn = document.getElementById('upload-btn');
     const webcamBtn = document.getElementById('webcam-btn');
+    const backToHeroBtn = document.getElementById('back-to-hero');
     const imageUpload = document.getElementById('image-upload');
     const originalCanvas = document.getElementById('original-canvas');
     const filteredCanvas = document.getElementById('filtered-canvas');
@@ -15,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const captureBtn = document.getElementById('capture-btn');
     const cancelWebcam = document.getElementById('cancel-webcam');
     const webcamVideo = document.getElementById('webcam');
+    
+    const heroSection = document.getElementById('hero');
+    const editorSection = document.getElementById('editor');
 
     // Canvas contexts
     const originalCtx = originalCanvas.getContext('2d', { willReadFrequently: true });
@@ -34,8 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set up event listeners
     function setupEventListeners() {
         // Button clicks
+        heroUploadBtn.addEventListener('click', () => imageUpload.click());
+        heroWebcamBtn.addEventListener('click', openWebcamModal);
         uploadBtn.addEventListener('click', () => imageUpload.click());
         webcamBtn.addEventListener('click', openWebcamModal);
+        backToHeroBtn.addEventListener('click', showHeroSection);
         closeModal.addEventListener('click', closeWebcamModal);
         captureBtn.addEventListener('click', captureFromWebcam);
         cancelWebcam.addEventListener('click', closeWebcamModal);
@@ -55,6 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
             applyCurrentFilter();
         });
     }
+    
+    // Show hero section
+    function showHeroSection() {
+        heroSection.style.display = 'flex';
+        editorSection.style.display = 'none';
+    }
+    
+    // Show editor section
+    function showEditorSection() {
+        heroSection.style.display = 'none';
+        editorSection.style.display = 'flex';
+    }
 
     // Handle image upload
     function handleImageUpload(e) {
@@ -67,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             img.onload = () => {
                 originalImage = img;
                 displayImage(img);
+                showEditorSection();
                 updateStatus('Image loaded successfully');
                 downloadBtn.disabled = false;
             };
@@ -321,6 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
         img.onload = () => {
             originalImage = img;
             displayImage(img);
+            showEditorSection();
             updateStatus('Image captured from webcam');
             downloadBtn.disabled = false;
         };
