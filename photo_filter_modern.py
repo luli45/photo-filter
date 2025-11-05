@@ -1,12 +1,18 @@
-import cv2
+# Check for OpenCV availability
+try:
+    import cv2
+    OPENCV_AVAILABLE = True
+except ImportError:
+    OPENCV_AVAILABLE = False
+    print("Warning: OpenCV not available. Some features will be disabled.")
+
 import numpy as np
 import tkinter as tk
-from tkinter import ttk, filedialog
-from PIL import Image, ImageTk, ImageOps
+from tkinter import ttk, filedialog, messagebox
+from PIL import Image, ImageTk, ImageOps, ImageFilter
 import os
 import logging
-from datetime import datetime
-from typing import Union, Tuple, Optional
+from typing import Optional, Tuple, Union, List, Dict, Any
 
 # Set up logging
 logging.basicConfig(
@@ -549,6 +555,11 @@ class PhotoFilterApp(tk.Tk):
             self.webcam_btn.config(text="🎥 Webcam On")
     
     def start_webcam(self):
+        if not OPENCV_AVAILABLE:
+            messagebox.showwarning("Webcam Unavailable", 
+                                "Webcam functionality requires OpenCV which is not available.")
+            return
+            
         try:
             self.cap = cv2.VideoCapture(0)
             if not self.cap.isOpened():
